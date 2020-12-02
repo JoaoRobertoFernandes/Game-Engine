@@ -2,7 +2,6 @@ package graphics;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 
@@ -11,12 +10,9 @@ public class Game extends Canvas implements Runnable {
      *
      */
     private static final long serialVersionUID = 1L;
-    private final int Width = 160;
-    private final int Height = 120;
-    private final int Scale = 3;
-
+   
     public Game() {
-        this.setPreferredSize(new Dimension(Width*Scale, Height*Scale));
+        this.setPreferredSize(new Dimension(GraphicsF.getW() * GraphicsF.getS(), GraphicsF.getH() * GraphicsF.getS()));
         GraphicsF.setFrame(new JFrame());
         GraphicsF.getFrame().add(this);
 		GraphicsF.getFrame().setResizable(false);
