@@ -1,9 +1,7 @@
 package graphics;
-
 import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-
 
 public class Game extends Canvas implements Runnable {
     /**
@@ -13,6 +11,11 @@ public class Game extends Canvas implements Runnable {
    
     public Game() {
         this.setPreferredSize(new Dimension(GraphicsF.getW() * GraphicsF.getS(), GraphicsF.getH() * GraphicsF.getS()));
+        Frame();
+        
+    }
+
+    public void Frame(){
         GraphicsF.setFrame(new JFrame());
         GraphicsF.getFrame().add(this);
 		GraphicsF.getFrame().setResizable(false);
@@ -22,13 +25,26 @@ public class Game extends Canvas implements Runnable {
 		GraphicsF.getFrame().setVisible(true);
     }
 
+    public synchronized void start(){
+        GraphicsF.setThread(new Thread(this));
+        GraphicsF.setRunning(true);
+        GraphicsF.getThread().start();
+    }
+
+    public synchronized void stop(){
+
+    }
+
     public static void main(String args[]){
         Game game =new Game();
+        game.start();
     }
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
+        while(GraphicsF.isRunning){
+            System.out.println("Game started!");
+        }
 
     }
     
