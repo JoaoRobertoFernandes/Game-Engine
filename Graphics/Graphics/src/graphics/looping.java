@@ -11,8 +11,6 @@ public class looping {
     public static int frames = 0;
     public static double timer = System.currentTimeMillis();
     
-    
-
     public static Thread getThread() {
 		return thread;
 	}
@@ -27,52 +25,4 @@ public class looping {
 		looping.isRunning = isRunning;
 	}
 
-    public static long getLastTime() {
-        return lastTime;
-    }
-    public static void setLastTime(long lastTime) {
-        looping.lastTime = lastTime;
-    }
-
-    public static double getAmountOfTicks() {
-        return amountOfTicks;
-    }
-    public static void setAmountOfTicks(double amountOfTicks) {
-        looping.amountOfTicks = amountOfTicks;
-    }
-
-    public static double getFps() {
-        return fps;
-    }
-    public static void setFps(double fps) {
-        looping.fps = fps;
-    }
-
-    public static double getDelta() {
-        return delta;
-    }
-    public static void setDelta(double delta) {
-        looping.delta = delta;
-    }
-
-    public static long getNow() {
-        return now;
-    }
-    public static void setNow(long now) {
-        looping.now = now;
-    }
-
-    public static int getFrames() {
-        return frames;
-    }
-    public static void setFrames(int frames) {
-        looping.frames = frames;
-    }
-
-    public static double getTimer() {
-        return timer;
-    }
-    public static void setTimer(double timer) {
-        looping.timer = timer;
-    }
 }

@@ -30,18 +30,22 @@ public class Game extends Canvas implements Runnable {
         game.start();
     }
 
+    //Game logic here
     public void tick(){
 
     }
 
+    //Game render here
     public void render(){
 
     }
 
+    //Game starts here
     @Override
     public void run() {
+        //Looping
         while (looping.isRunning) {
-            looping.setNow(System.nanoTime());
+            looping.now = System.nanoTime();
             looping.delta += (looping.now - looping.lastTime) / looping.fps;
             looping.lastTime = looping.now;
             if (looping.delta >= 1){
@@ -59,6 +63,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
     
+    //Screen render
     public void Frame(){
         Screen.setFrame(new JFrame());
         Screen.getFrame().add(this);

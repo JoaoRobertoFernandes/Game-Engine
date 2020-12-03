@@ -7,7 +7,6 @@ public class Screen{
 	public static int h = 120;
 	public static int w = 160;
 	public static int s = 3;
-	
 
 	public static JFrame getFrame() {
 		return frame;
