@@ -6,7 +6,7 @@ public class Screen{
 	public static JFrame frame;
 	public static int h = 120;
 	public static int w = 160;
-	public static int s = 3;
+	public static int s = 4;
 	public static BufferedImage image;
 
 	public static JFrame getFrame() {

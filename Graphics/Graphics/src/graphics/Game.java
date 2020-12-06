@@ -6,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-
 import javax.swing.JFrame;
-
-import org.graalvm.compiler.loop.phases.LoopPartialUnrollPhase;
 
 public class Game extends Canvas implements Runnable {
     /**
@@ -62,8 +59,11 @@ public class Game extends Canvas implements Runnable {
         //----------Render Algorithm----------//
 
         //----------Render in Screen----------//
+            //-----Base Image-----//
         g.setColor(new Color (19, 19, 19));
         g.fillRect(0, 0, Screen.getW(), Screen.getH());
+            //-----Base Image-----//
+            
         g = bs.getDrawGraphics();
         g.drawImage(Screen.getImage(), 0, 0, Screen.getW() * Screen.getS(), Screen.getH() * Screen.getS(), null);
         bs.show();
