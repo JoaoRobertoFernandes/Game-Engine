@@ -1,12 +1,13 @@
 package graphics;
 import javax.swing.JFrame;
-
+import java.awt.image.BufferedImage;
 
 public class Screen{
 	public static JFrame frame;
 	public static int h = 120;
 	public static int w = 160;
 	public static int s = 3;
+	public static BufferedImage image;
 
 	public static JFrame getFrame() {
 		return frame;
@@ -38,5 +39,12 @@ public class Screen{
 	public static void setS(int s) {
 		Screen.s = s;
 		
+	}
+
+	public static BufferedImage getImage() {
+		return image;
+	}
+	public static void setImage(BufferedImage image) {
+		Screen.image = image;
 	}
 }

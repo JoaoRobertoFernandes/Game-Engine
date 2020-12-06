@@ -1,6 +1,11 @@
 package graphics;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
@@ -12,7 +17,7 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         this.setPreferredSize(new Dimension(Screen.getW() * Screen.getS(), Screen.getH() * Screen.getS()));
         Frame();
-        
+        image();
     }
 
     public synchronized void start(){
@@ -37,13 +42,28 @@ public class Game extends Canvas implements Runnable {
 
     //Game render here
     public void render(){
+        //----------Render Algorithm----------//
+        BufferStrategy bs = this.getBufferStrategy();
+        if(bs == null) {
+            this.createBufferStrategy(3);
+            return;
+        }
+        Graphics g = Screen.getImage().getGraphics();
+        //----------Render Algorithm----------//
 
+        //----------Render in Screen----------//
+        g.setColor(new Color (19, 19, 19));
+        g.fillRect(0, 0, Screen.getW(), Screen.getH());
+        g = bs.getDrawGraphics();
+        g.drawImage(Screen.getImage(), 0, 0, Screen.getW() * Screen.getS(), Screen.getH() * Screen.getS(), null);
+        bs.show();
+        //----------Render in Screen----------//
     }
 
     //Game starts here
     @Override
     public void run() {
-        //Looping
+        //----------Looping----------//
         while (looping.isRunning) {
             looping.now = System.nanoTime();
             looping.delta += (looping.now - looping.lastTime) / looping.fps;
@@ -61,6 +81,7 @@ public class Game extends Canvas implements Runnable {
             }   
             
         }
+        //----------Looping----------//
     }
     
     //Screen render
@@ -72,5 +93,9 @@ public class Game extends Canvas implements Runnable {
 		Screen.getFrame().setLocationRelativeTo(null);
 		Screen.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Screen.getFrame().setVisible(true);
+    }
+
+    public void image(){
+        Screen.setImage(new BufferedImage(Screen.getW(), Screen.getH(),BufferedImage.TYPE_INT_BGR));
     }
 }
