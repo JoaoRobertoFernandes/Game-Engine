@@ -1,4 +1,5 @@
 package graphics;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,26 +9,35 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
+import org.graalvm.compiler.loop.phases.LoopPartialUnrollPhase;
+
 public class Game extends Canvas implements Runnable {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-   
+
     public Game() {
         this.setPreferredSize(new Dimension(Screen.getW() * Screen.getS(), Screen.getH() * Screen.getS()));
         Frame();
         image();
     }
 
-    public synchronized void start(){
+    public synchronized void start() {
         looping.setThread(new Thread(this));
         looping.setRunning(true);
         looping.getThread().start();
     }
 
-    public synchronized void stop(){
-
+    public synchronized void stop() {
+        //----------Stops threads----------//
+        looping.setRunning(false);
+        try {
+            looping.getThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+         //----------Stops threads----------//
     }
 
     public static void main(String args[]){
@@ -81,6 +91,7 @@ public class Game extends Canvas implements Runnable {
             }   
             
         }
+        stop();
         //----------Looping----------//
     }
     
